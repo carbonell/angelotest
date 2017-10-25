@@ -1,0 +1,9 @@
+1. Desarrollar el mantenimiento de los usuarios con sus respectivos roles (doctor y secretaria)
+2. Desarrollar los mantenimientos de clinicas y consultorios, para cuando el doctor entre al sistema y la secretaria también
+elijan en qué consultorio van a trabajar.
+
+Detalles:
+
+    * una clínica tiene varios consultorios
+    * los consultorios tienen secretarias
+    * los consultorios pertenecen a un doctor.

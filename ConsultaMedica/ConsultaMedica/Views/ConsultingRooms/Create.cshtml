@@ -1,0 +1,33 @@
+﻿@model ConsultaMedica.Models.ConsultingRoomViewModel
+
+@{
+    ViewBag.Title = "Agregar nueva consultorio";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Create", "ConsultingRooms", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.DisplayNameFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.DisplayNameFor(x => x.ClinicId)
+        @Html.DropDownListFor(x => x.ClinicId, (List<SelectListItem>)ViewBag.Clinics, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.ClinicId)
+    </div>
+
+    <div class="form-group">
+        @Html.DisplayNameFor(x => x.UserId)
+        @Html.DropDownListFor(x => x.UserId, (List<SelectListItem>)ViewBag.Doctors, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.UserId)
+    </div>
+
+    <button type="submit" class="btn btn-default">Agregar</button>
+
+}

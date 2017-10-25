@@ -38,6 +38,14 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -49,11 +57,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repository\SqlServerDoctorsRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Migrations\201710251356268_InitialMigration.cs" />
+    <Compile Include="Migrations\201710251356268_InitialMigration.Designer.cs">
+      <DependentUpon>201710251356268_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710251357281_AddNamePropertyToApplicationUser.cs" />
+    <Compile Include="Migrations\201710251357281_AddNamePropertyToApplicationUser.Designer.cs">
+      <DependentUpon>201710251357281_AddNamePropertyToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710251444573_AddClinicsAndConsultingRoomEntities.cs" />
+    <Compile Include="Migrations\201710251444573_AddClinicsAndConsultingRoomEntities.Designer.cs">
+      <DependentUpon>201710251444573_AddClinicsAndConsultingRoomEntities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="DataContext.cs" />
+    <Compile Include="Models\BaseEntity.cs" />
+    <Compile Include="Models\Clinic.cs" />
+    <Compile Include="Models\ConsultingRoom.cs" />
+    <Compile Include="Models\Mapping\ClinicMappingConfiguration.cs" />
+    <Compile Include="Models\Mapping\ConsultingRoomMappingConfiguration.cs" />
+    <Compile Include="Models\Mapping\EntityTypeConfigurationBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\SqlServerConsultingRoomsRepository.cs" />
+    <Compile Include="Repository\SqlServerClinicsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710251356268_InitialMigration.resx">
+      <DependentUpon>201710251356268_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710251357281_AddNamePropertyToApplicationUser.resx">
+      <DependentUpon>201710251357281_AddNamePropertyToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710251444573_AddClinicsAndConsultingRoomEntities.resx">
+      <DependentUpon>201710251444573_AddClinicsAndConsultingRoomEntities.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
