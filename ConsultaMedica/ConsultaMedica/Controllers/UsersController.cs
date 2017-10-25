@@ -1,4 +1,5 @@
 ﻿using ConsultaMedica.Data;
+using ConsultaMedica.Data.Models;
 using ConsultaMedica.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -34,22 +35,39 @@ namespace ConsultaMedica.Controllers
             }
         }
 
-        [HttpGet]
-        public ActionResult Create()
+        public ActionResult Index()
         {
-            var roles = _roleManager.Roles.ToList();
+            var doctorRoleId = _roleManager.Roles.First(x => x.Name == "Doctor").Id;
 
-            ViewBag.Roles = roles;
+            var doctors = UserManager.Users.Where(x => x.Roles.Any(r => r.RoleId == doctorRoleId)).ToList();
 
+            var model = UserViewModel.FromUserCollection(doctors);
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult CreateDoctor()
+        {
             return View();
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Create(UserViewModel model)
+        public ActionResult CreateDoctor(UserViewModel model)
         {
-            var roles = _roleManager.Roles.ToList();
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
 
-            ViewBag.Roles = roles;
+                var result = UserManager.Create(user, model.Password);
+
+                UserManager.AddToRole(user.Id, "Doctor");
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+            }
 
             return View();
         }

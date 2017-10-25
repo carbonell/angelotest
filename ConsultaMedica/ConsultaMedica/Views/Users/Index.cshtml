@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ConsultaMedica.Models.UserViewModel>
+
+@{
+    ViewBag.Title = "Listado de doctores";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.ActionLink("Agregar nuevo", "CreateDoctor")
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var doctor in Model)
+            {
+                <tr>
+                    <td>@doctor.Name</td>
+                    <td>@doctor.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,37 @@
+﻿@model ConsultaMedica.Models.UserViewModel
+@{
+    ViewBag.Title = "Agregar nuevo doctor";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("CreateDoctor", "Users", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.DisplayNameFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+    
+    <div class="form-group">
+        @Html.DisplayNameFor(x => x.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.DisplayNameFor(x => x.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.DisplayNameFor(x => x.PasswordConfirmation)
+        @Html.PasswordFor(m => m.PasswordConfirmation, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PasswordConfirmation, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-default">Agregar</button>
+}

@@ -9,6 +9,18 @@
         <li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
+        <li>
+            @{
+                var selectedRoom = Session["SelectedConsultingRoom"];
+
+                if (selectedRoom == null)
+                {
+                    selectedRoom = "No seleccionado";
+                }
+
+                @Html.ActionLink("Consultorio: " + selectedRoom, "SelectConsultingRoom", "Home", htmlAttributes: new { title = "Cambiar consultorio" })
+            }
+        </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
     }

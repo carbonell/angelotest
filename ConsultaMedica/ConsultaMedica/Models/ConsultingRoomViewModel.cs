@@ -2,11 +2,15 @@
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ConsultaMedica.Models
 {
     public class ConsultingRoomViewModel
     {
+        public int Id { get; set; }
+
         [DisplayName("Nombre")]
         [Required]
         public string Name { get; set; }
